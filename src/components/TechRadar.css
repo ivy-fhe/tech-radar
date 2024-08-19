@@ -1,0 +1,6 @@
+.techRadar {
+    display: grid;
+    width: min-content;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}

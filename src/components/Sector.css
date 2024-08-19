@@ -1,0 +1,33 @@
+.sector {
+    position: absolute;
+}
+
+.topLeftSector {
+    right: 0;
+    bottom: 0;
+    border-radius: 100% 0 0 0;
+}
+
+.topRightSector {
+    left: 0;
+    bottom: 0;
+    border-radius: 0 100% 0 0;
+}
+
+.bottomRightSector {
+    left: 0;
+    top: 0;
+    border-radius: 0 0 100% 0;
+}
+
+.bottomLeftSector {
+    right: 0;
+    top: 0;
+    border-radius: 0 0 0 100%;
+}
+
+.adopt {
+    height: 50px;
+    width: 50px;
+    background-color: lightgray;
+}

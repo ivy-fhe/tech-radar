@@ -1,0 +1,26 @@
+.quadrant {
+    position: relative;
+    height: 400px;
+    width: 400px;
+    background-color: white;
+}
+
+.topLeft {
+    border-radius: 100% 0 0 0;
+    align-content: end;
+    text-align: end;
+}
+
+.topRight {
+    border-radius: 0 100% 0 0;
+    align-content: end;
+}
+
+.bottomRight {
+    border-radius: 0 0 100% 0;
+}
+
+.bottomLeft {
+    border-radius: 0 0 0 100%;
+    text-align: end;
+}
