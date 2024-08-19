@@ -29,30 +29,32 @@
 .adopt {
     height: 100px;
     width: 100px;
-    background-color: lightgray;
+    background-color: #f8f8f8;
 }
 
 .specific {
     height: 200px;
     width: 200px;
-    background-color: blue;
+    background-color: #dfdfdf;
 }
 
 .trial {
     height: 300px;
     width: 300px;
-    background-color: yellow;
+    
+    background-color: #c6c6c6;
 }
 
 .hold {
     height: 400px;
     width: 400px;
-    background-color: green;
+    
+    background-color: #adadad;
 }
 
 .point {
     width: 20px;
     height: 20px;
-    background-color: purple;
+    background-color: #007095;
     position: absolute;
 }

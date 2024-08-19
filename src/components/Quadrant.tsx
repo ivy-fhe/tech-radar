@@ -33,12 +33,15 @@ export const Quadrant = ({cat, quadrantItems} : {cat: Category, quadrantItems: Q
     }
     return (
         <>
-            <div className={"quadrant" + qClass}>
+            <div className={"quadrant"}>
+                <div className={qClass}>
                 <p className='quadrantTitle'>{Category[cat]}</p>
-                <Sector name={SectorName.Hold} items={quadrantItems.hold} styleClass={qClass}/>
-                <Sector name={SectorName.Trial} items={quadrantItems.trial} styleClass={qClass}/>
-                <Sector name={SectorName.Specific} items={quadrantItems.specific} styleClass={qClass}/>
-                <Sector name={SectorName.Adopt} items={quadrantItems.adopt} styleClass={qClass}/>
+                    <Sector name={SectorName.Hold} items={quadrantItems.hold} styleClass={qClass}/>
+                    <Sector name={SectorName.Trial} items={quadrantItems.trial} styleClass={qClass}/>
+                    <Sector name={SectorName.Specific} items={quadrantItems.specific} styleClass={qClass}/>
+                    <Sector name={SectorName.Adopt} items={quadrantItems.adopt} styleClass={qClass}/>
+                </div>
+                
             </div>
         </>
     )

@@ -1,31 +1,48 @@
 .quadrant {
     position: relative;
-    height: 400px;
-    width: 400px;
+    background-color: #f8f8f8;
+    height: 450px;
+    width: 450px;
+}
+
+.quadrant:has(.topLeft) {
+    border-radius: 0.5rem 0 0 0;
+}
+
+.quadrant:has(.topRight) {
+    border-radius: 0 0.5rem 0 0;
+}
+
+.quadrant:has(.bottomRight) {
+    border-radius: 0 0 0.5rem 0;
+}
+
+.quadrant:has(.bottomLeft) {
+    border-radius: 0 0 0 0.5rem;
 }
 
 .topLeft > .quadrantTitle {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 20px;
 }
 
 .topRight > .quadrantTitle {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 20px;
 }
 
 .bottomRight > .quadrantTitle {
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 10px;
+    right: 20px;
 }
 
 .bottomLeft > .quadrantTitle {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    bottom: 10px;
+    left: 20px;
 }
 
 .topLeft {
