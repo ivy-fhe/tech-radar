@@ -26,10 +26,10 @@ export const Quadrant = ({cat} : {cat: Category}) => {
     }
     return (
         <div className={"quadrant" + qClass}>
-            <Sector name={SectorName.Adopt} items={[]} styleClass={qClass}/>
-            <Sector name={SectorName.Specific} items={[]} styleClass={qClass}/>
-            <Sector name={SectorName.Trial} items={[]} styleClass={qClass}/>
             <Sector name={SectorName.Hold} items={[]} styleClass={qClass}/>
+            <Sector name={SectorName.Trial} items={[]} styleClass={qClass}/>
+            <Sector name={SectorName.Specific} items={[]} styleClass={qClass}/>
+            <Sector name={SectorName.Adopt} items={[]} styleClass={qClass}/>
         </div>
     )
 }
