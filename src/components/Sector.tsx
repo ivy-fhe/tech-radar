@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import './Sector.css';
 export enum SectorName {
     Adopt,
@@ -8,20 +9,20 @@ export enum SectorName {
 
 
 export const Sector = ({name, items, styleClass} : {name : SectorName, items: Array<string>, styleClass: string}) => {
-    const points = [];
+    const points : Array<ReactNode>= [];
     const min = 100 * name + 10;
-    
-    for(let i = 0; i < 10; i++){
+    let i = 0;
+    const locs = [];
+    for(let i = 0; i < items.length; i++){
         let location = calculateLocation(min, name, styleClass);
-        points.push(<div className='point' style={location}></div>)
+        locs.push(location);
+        
     }
-    
-
+    locs.forEach((l, i) => points.push(<div className='point' style={l}>{items[i]}</div>));
 
     
     return (
         <div className={"sector " +  SectorName[name].toLocaleLowerCase() + " " + styleClass + "Sector"}>
-            <p>{SectorName[name]}</p>
             {points}
         </div>
     )
