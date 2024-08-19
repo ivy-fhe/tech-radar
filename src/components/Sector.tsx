@@ -11,7 +11,6 @@ export enum SectorName {
 export const Sector = ({name, items, styleClass} : {name : SectorName, items: Array<string>, styleClass: string}) => {
     const points : Array<ReactNode>= [];
     const min = 100 * name + 10;
-    let i = 0;
     const locs = [];
     for(let i = 0; i < items.length; i++){
         let location = calculateLocation(min, name, styleClass);
