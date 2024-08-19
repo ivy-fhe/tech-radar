@@ -56,5 +56,6 @@
     width: 20px;
     height: 20px;
     background-color: #007095;
+    border-radius: 100%;
     position: absolute;
 }
