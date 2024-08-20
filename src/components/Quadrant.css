@@ -87,6 +87,10 @@
     border-radius: 100%;
 }
 
+.itemListWrapper {
+    visibility: collapse;
+}
+
 .expanded .closeBtn{
     visibility: visible;
 }
@@ -118,4 +122,17 @@
     left: 20px;
     bottom: auto;
     right: auto;
+}
+
+.expanded .itemListWrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: start;
+    visibility: visible;
+    position: absolute;
+    top: 50%;
+    left: 200px;
+    transform: translateY(-50%);
 }
