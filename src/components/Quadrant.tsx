@@ -32,21 +32,34 @@ export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadra
     let qClass;
     const [expStatus, setExpStatus] = useState(ExpState[ExpState.collapsed]);
     const itemList: Array<ReactNode> = [];
-    itemList.push(<h1>Hold</h1>)
-    let list = <ul>{quadrantItems.hold.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-    itemList.push(list);
+    
+    let hold = (
+        <div className='listBox'>
+            <h1>Hold</h1>
+            <ul>{quadrantItems.hold.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(hold);
 
-    itemList.push(<h1>Trial</h1>)
-    list = <ul>{quadrantItems.trial.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-    itemList.push(list);
+    let trial = (
+        <div className='listBox'>
+            <h1>Trial</h1>
+            <ul>{quadrantItems.trial.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(trial);
 
-    itemList.push(<h1>Specific</h1>)
-    list = <ul>{quadrantItems.specific.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-    itemList.push(list);
+    let specific = (
+        <div className='listBox'>
+            <h1>Specific</h1>
+            <ul>{quadrantItems.specific.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(specific);
 
-    itemList.push(<h1>Adopt</h1>)
-    list = <ul>{quadrantItems.adopt.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-    itemList.push(list);
+    let adopt = (
+        <div className='listBox'>
+            <h1>Adopt</h1>
+            <ul>{quadrantItems.adopt.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(adopt);
 
     switch(cat) {
         case Category.Techniques:

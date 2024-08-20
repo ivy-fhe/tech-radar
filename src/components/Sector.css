@@ -3,6 +3,11 @@
     --trial-default: calc(1/2*100vh - 20vh);
     --specific-default: calc(1/2*100vh - 30vh);
     --adopt-default: calc(1/2*100vh - 40vh);
+
+    --hold-expanded: 95vh;
+    --trial-expanded: 70vh;
+    --specific-expanded: 45vh;
+    --adopt-expanded: 20vh;
 }
 
 .sector {
@@ -90,23 +95,23 @@
 }
 
 .expanded .hold {
-    width: 1000px;
-    height: 1000px;
+    height: var(--hold-expanded);
+    aspect-ratio: 1;
 }
 
 .expanded .trial {
-    width: 800px;
-    height: 800px;
+    height: var(--trial-expanded);
+    aspect-ratio: 1;
 }
 
 .expanded .specific {
-    width: 600px;
-    height: 600px;
+    height: var(--specific-expanded);
+    aspect-ratio: 1;
 }
 
 .expanded .adopt {
-    width: 400px;
-    height: 400px;
+    height: var(--adopt-expanded);
+    aspect-ratio: 1;
 }
 
 .expanded .bottomRightSector, .topRightSector {
