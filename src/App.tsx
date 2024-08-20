@@ -6,7 +6,14 @@ import { TechRadar } from './components/TechRadar'
 function App() {
   const [count, setCount] = useState(0)
   window.addEventListener('keyup', (event) => {
-    console.log(event.key);
+    let elements = document.getElementsByClassName('expanded');
+    for(let i = 0; i < elements.length; i++){
+      if(elements[i]){
+        elements[i].classList.remove('expanded');
+        elements[i].classList.add('collapsed');
+      }
+      
+    }
   });
   return (
     
