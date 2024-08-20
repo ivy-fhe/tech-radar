@@ -89,6 +89,8 @@
 
 .itemListWrapper {
     visibility: collapse;
+    overflow: scroll;
+    width: max-content;
 }
 
 .expanded .closeBtn{
