@@ -3,6 +3,20 @@
     background-color: #f8f8f8;
     height: 450px;
     width: 450px;
+    transition: all 100ms linear;
+}
+
+.quadrant:hover {
+    transform: scale(1.05);
+    z-index: 20;
+}
+
+.quadrant:hover ~ .quadrant {
+    opacity: 0.2;
+}
+
+.quadrant:has(~ .quadrant:hover) {
+    opacity: 0.2;
 }
 
 .quadrant:has(.topLeft) {

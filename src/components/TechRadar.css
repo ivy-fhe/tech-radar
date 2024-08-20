@@ -4,3 +4,8 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
+
+.pointInfo {
+    position:absolute;
+    top: 10px;
+}

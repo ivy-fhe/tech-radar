@@ -1,5 +1,6 @@
 import { SectorName, Sector} from './Sector';
 import './Quadrant.css';
+import { Point } from './TechRadar';
 
 export enum Category {
     Techniques,
@@ -9,13 +10,13 @@ export enum Category {
 }
 
 export type QuadrantItems = {
-    hold: Array<string>,
-    trial: Array<string>,
-    specific: Array<string>,
-    adopt: Array<string>
+    hold: Array<Point>,
+    trial: Array<Point>,
+    specific: Array<Point>,
+    adopt: Array<Point>
 }
 
-export const Quadrant = ({cat, quadrantItems} : {cat: Category, quadrantItems: QuadrantItems}) => {
+export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadrantItems: QuadrantItems, callback: (text: string) => void}) => {
     let qClass;
     switch(cat) {
         case Category.Techniques:
@@ -36,10 +37,10 @@ export const Quadrant = ({cat, quadrantItems} : {cat: Category, quadrantItems: Q
             <div className={"quadrant"}>
                 <div className={qClass}>
                 <p className='quadrantTitle'>{Category[cat]}</p>
-                    <Sector name={SectorName.Hold} items={quadrantItems.hold} styleClass={qClass}/>
-                    <Sector name={SectorName.Trial} items={quadrantItems.trial} styleClass={qClass}/>
-                    <Sector name={SectorName.Specific} items={quadrantItems.specific} styleClass={qClass}/>
-                    <Sector name={SectorName.Adopt} items={quadrantItems.adopt} styleClass={qClass}/>
+                    <Sector sectorName={SectorName.Hold} quadrant={cat} items={quadrantItems.hold} styleClass={qClass} callback={callback}/>
+                    <Sector sectorName={SectorName.Trial} quadrant={cat} items={quadrantItems.trial} styleClass={qClass} callback={callback}/>
+                    <Sector sectorName={SectorName.Specific} quadrant={cat} items={quadrantItems.specific} styleClass={qClass} callback={callback}/>
+                    <Sector sectorName={SectorName.Adopt} quadrant={cat} items={quadrantItems.adopt} styleClass={qClass} callback={callback}/>
                 </div>
                 
             </div>

@@ -1,23 +1,41 @@
+import { useState } from "react";
 import { Category, Quadrant, type QuadrantItems } from "./Quadrant"
 import './TechRadar.css'
 
-const dummyItems = ['a', 'b', 'c', 'd'];
-
-const items: QuadrantItems = {
-    hold: dummyItems.map(e => e + " hold"),
-    trial: dummyItems.map(e => e + " trial"),
-    specific: dummyItems.map(e => e + " specific"),
-    adopt: dummyItems.map(e => e + " adopt"),
+export type Point = {
+    name: string,
+    description: string,
 }
 
+const dummyItems: Array<Point> = ['a', 'b', 'c', 'd', 'e', 'f', 'h', 'i', 'j', 'k'].map(e =>  {
+    return {
+        name: e,
+        description: "description of point " + e
+    }
+});;
+
+const items: QuadrantItems = {
+    hold: dummyItems,
+    trial: dummyItems,
+    specific: dummyItems,
+    adopt: dummyItems,
+}
 
 export const TechRadar = () => {
+    const [infoText, setInfoText] = useState('');
+    const callback : (text: string) => void = (text) => {
+        setInfoText(text);
+    }
     return (
+        <>
+        <p className="pointInfo">{infoText}</p>
         <div className="techRadar">
-            <Quadrant cat={Category.Techniques} quadrantItems={items}/>
-            <Quadrant cat={Category.Platforms} quadrantItems={items}/>
-            <Quadrant cat={Category.LanguagesFrameworks} quadrantItems={items}/>
-            <Quadrant cat={Category.Tools} quadrantItems={items}/>
+            <Quadrant cat={Category.Techniques} quadrantItems={items} callback={callback}/>
+            <Quadrant cat={Category.Platforms} quadrantItems={items} callback={callback}/>
+            <Quadrant cat={Category.LanguagesFrameworks} quadrantItems={items} callback={callback}/>
+            <Quadrant cat={Category.Tools} quadrantItems={items} callback={callback}/>
         </div>
+        </>
+        
     )
 }
