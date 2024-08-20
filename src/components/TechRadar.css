@@ -1,11 +1,30 @@
 .techRadar {
     display: grid;
-    width: min-content;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". ."
+      ". ."; 
+    max-width: max-content;
+    max-height: max-content;
+    align-content: center;
+    
     gap: 10px;
 }
 
 .pointInfo {
-    position:absolute;
+    position: absolute;
     top: 10px;
 }
+
+
+.container {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". ."
+      ". ."; 
+  }

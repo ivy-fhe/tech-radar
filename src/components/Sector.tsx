@@ -26,7 +26,8 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback} : {se
     if(sectorName === SectorName.Adopt) p = ADOPT_POSITIONS[quadrant]
 
     for(let i = 0; i < items.length && i < p.length; i++){
-        let location = rotatePoint(100 * sectorName - 5, p[i], styleClass);
+        let height = window.innerHeight / 10;
+        let location = rotatePoint(height * sectorName, p[i], styleClass);
         points.push(
             <div onMouseEnter={() => callback(items[i].description)} onMouseLeave={() => callback('')} className='point' style={location}>
             <p className='pointLabel'>{items[i].name}</p>
@@ -43,33 +44,37 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback} : {se
 }
 
 const rotatePoint = (min: number, vec: number[], styleClass: string ) => {
+    const height = window.innerHeight;
+    const vh = height / 100;
+    min -= vh;
     const point = min + vec[0];
     const angle = vec[1];
-    const vector = [Math.abs(Math.cos(-angle) * 0 - Math.sin(-angle) * point), Math.abs(Math.sin(-angle) * 0 + Math.cos(-angle)*point)];
+    let vector = [Math.abs(Math.cos(-angle) * 0 - Math.sin(-angle) * point), Math.abs(Math.sin(-angle) * 0 + Math.cos(-angle)*point)];
+    vector = [vector[0] / vh, vector[1] / vh];
     let location;
     switch(styleClass.trim()){
         case 'topLeft':
             location = {
-                bottom: vector[0] + "px",
-                right: vector[1]+ "px"
+                bottom: vector[0] + "vh",
+                right: vector[1]+ "vh"
             }
             break;
         case 'topRight':
             location = {
-                bottom: vector[0]+ "px",
-                left: vector[1]+ "px"
+                bottom: vector[0]+ "vh",
+                left: vector[1]+ "vh"
             }
             break;
         case 'bottomRight':
             location = {
-                top: vector[0]+ "px",
-                left: vector[1]+ "px"
+                top: vector[0]+ "vh",
+                left: vector[1]+ "vh"
             }
             break;
         case 'bottomLeft':
             location = {
-                top: vector[0]+ "px",
-                right: vector[1]+ "px"
+                top: vector[0]+ "vh",
+                right: vector[1]+ "vh"
             }
             break;
         default:

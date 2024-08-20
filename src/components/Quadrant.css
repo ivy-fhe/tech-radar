@@ -1,14 +1,14 @@
 .quadrant {
     position: relative;
-    background-color: #f8f8f8;
-    height: 450px;
-    width: 450px;
+    background-color: white;
+    height: var(--hold-default);
+    width: var(--hold-default);
     transition: all 100ms linear;
 }
 
-.quadrant:hover {
+.quadrant:hover:not(.expanded) {
     transform: scale(1.05);
-    z-index: 20;
+    z-index: 9;
 }
 
 .quadrant:hover ~ .quadrant {
@@ -77,4 +77,45 @@
 .bottomLeft {
     border-radius: 0 0 0 100%;
     text-align: end;
+}
+
+.closeBtn {
+    margin: 2em;
+    visibility: collapse;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 100%;
+}
+
+.expanded .closeBtn{
+    visibility: visible;
+}
+
+.expanded {
+    border-radius: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.expanded {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.expanded .sector {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.expanded .quadrantTitle {
+    top: 10px;
+    left: 20px;
+    bottom: auto;
+    right: auto;
 }

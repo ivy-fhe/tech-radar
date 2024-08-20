@@ -1,3 +1,10 @@
+:root{
+    --hold-default: calc(1/2*100vh - 10vh);
+    --trial-default: calc(1/2*100vh - 20vh);
+    --specific-default: calc(1/2*100vh - 30vh);
+    --adopt-default: calc(1/2*100vh - 40vh);
+}
+
 .sector {
     position: absolute;
 }
@@ -27,26 +34,26 @@
 }
 
 .adopt {
-    height: 100px;
-    width: 100px;
+    height: var(--adopt-default);
+    aspect-ratio: 1;
     background-color: #f8f8f8;
 }
 
 .specific {
-    height: 200px;
-    width: 200px;
+    height: var(--specific-default);
+    aspect-ratio: 1;
     background-color: #dfdfdf;
 }
 
 .trial {
-    height: 300px;
-    width: 300px;
+    height: var(--trial-default);
+    aspect-ratio: 1;
     background-color: #c6c6c6;
 }
 
 .hold {
-    height: 400px;
-    width: 400px;
+    height: var(--hold-default);
+    aspect-ratio: 1;
     background-color: #adadad;
 }
 
@@ -76,4 +83,32 @@
 .pointLabel {
     margin: 0;
     padding: 0;
+}
+
+.expanded .sector {
+    border-radius: 100% 0 0 100%;
+}
+
+.expanded .hold {
+    width: 1000px;
+    height: 1000px;
+}
+
+.expanded .trial {
+    width: 800px;
+    height: 800px;
+}
+
+.expanded .specific {
+    width: 600px;
+    height: 600px;
+}
+
+.expanded .adopt {
+    width: 400px;
+    height: 400px;
+}
+
+.expanded .bottomRightSector, .topRightSector {
+    left: auto;
 }
