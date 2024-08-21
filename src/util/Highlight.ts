@@ -1,4 +1,4 @@
-import { Point } from "../components/TechRadar";
+import { Point } from "./enum-types";
 
 export const handleHighlight = (element: Point, remove: boolean, callback: (str: string) => void) => {
     let htmlElements = document.getElementsByClassName(element.id);
