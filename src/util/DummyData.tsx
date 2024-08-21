@@ -15,19 +15,21 @@ export const createAdoptItems = (adoptItems: Array<string>) => {
 
 
 const createItems = (numbers: Array<number>, git?: Array<string>) => {
+    let count = 0;
     const gen = (e: string|number) => {
+        count++;
         return {
-            name: e+"",
-            description: "description of point " + e,
+            name: count+"",
+            description: "description of point " + (git ? e : count),
             id: crypto.randomUUID() 
         }
     };
 
     const items: QuadrantItems = {
-        hold: numbers.map(e => gen(e)),
-        trial: numbers.map(e => gen(e)),
+        adopt: git? git.map(e => gen(e)) : numbers.map(e => gen(e)),
         specific: numbers.map(e => gen(e)),
-        adopt: git? git.map(e => gen(e)) : numbers.map(e => gen(e))
+        trial: numbers.map(e => gen(e)),
+        hold: numbers.map(e => gen(e)),
     }
     return items;
 }
