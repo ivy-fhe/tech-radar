@@ -93,15 +93,15 @@
     width: 30vw;
 }
 
-.point.highlight ~ .point {
+.expanded .point.highlight ~ .point {
     opacity: 0.2;
 }
 
-.point:has(~ .point.highlight) {
+.expanded .point:has(~ .point.highlight) {
     opacity: 0.2;
 }
 
-.highlight {
+.expanded .highlight {
     background-color: #007095;
     transform: scale(1.2);
 }

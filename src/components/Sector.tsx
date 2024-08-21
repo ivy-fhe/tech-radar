@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Category } from './Quadrant';
 import { Point } from './TechRadar';
 import { getCssVar } from '../util/Size';
@@ -24,6 +24,7 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     const expOffset = Number(getCssVar("--radius-diff-expanded").replace("vh", ""))/2;
     const maxExp = Number(getCssVar("--hold-expanded").replace("vh", ""));
     const expSizes = [maxExp, maxExp-(2*expOffset), maxExp-(2*expOffset)*2, maxExp-(2*expOffset)*3].reverse();
+
     let points: Array<ReactNode> = [];
     const expPoints: Array<ReactNode> = [];
     let p: number[][] = [];
@@ -38,7 +39,6 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
         localStorage.setItem(storageKey, JSON.stringify(Array.from(allPos.entries())));
     }
     
-
     if(sectorName === SectorName.Hold) p = allPos.get(3);
     if(sectorName === SectorName.Trial) p = allPos.get(2);
     if(sectorName === SectorName.Specific) p = allPos.get(1);
@@ -131,7 +131,6 @@ const rotatePoint = (min: number, vec: number[], styleClass: string ) => {
 
 const expLocations = (count: number, min: number) => {
     let p = [];
-    console.log(min);
     let start = [min, 0];
     let degStep = 180/(count+1);
     for(let i = 1; i <= count; i++){
