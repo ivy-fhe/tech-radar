@@ -41,28 +41,27 @@ export const TechRadar = () => {
     const callback : (text: string) => void = (text) => {
         setInfoText(text);
     }
-    
-    /*
-    const [gitItems, setGitItems] = useState(['']);
+    const [adopt, setAdopt] = useState(items);
+
     useEffect(() => {
-        getLang().then(e => setGitItems(Object.keys(e)));
-    },[])
-    const adopt = createItems(numbers, gitItems);
-    */
-
-
-    
-
-    return (
-        <>
-        <p className="pointInfo">{infoText}</p>
-        <div className="techRadar">
-            <Quadrant cat={Category.Techniques} quadrantItems={items} callback={callback}/>
-            <Quadrant cat={Category.Platforms} quadrantItems={items} callback={callback}/>
-            <Quadrant cat={Category.LanguagesFrameworks} quadrantItems={items} callback={callback}/>
-            <Quadrant cat={Category.Tools} quadrantItems={items} callback={callback}/>
-        </div>
-        </>
-        
-    )
+        const setData = async () => {
+            let data = await getLang();
+            setAdopt(createItems(numbers, Object.keys(data)));
+        }
+        setData();
+      }, []);
+      
+        return (
+            <>
+            <p className="pointInfo">{infoText}</p>
+            <div className="techRadar">
+                <Quadrant cat={Category.Techniques} quadrantItems={items} callback={callback}/>
+                <Quadrant cat={Category.Platforms} quadrantItems={items} callback={callback}/>
+                <Quadrant cat={Category.LanguagesFrameworks} quadrantItems={items} callback={callback}/>
+                <Quadrant cat={Category.Tools} quadrantItems={adopt} callback={callback}/>
+            </div>
+            </>
+            
+        )
+    //});
 }
