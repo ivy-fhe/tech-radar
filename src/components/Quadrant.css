@@ -150,7 +150,7 @@
 }
 
 .expanded .itemListWrapper {
-    height: 100vh;
+    height: 96vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -159,7 +159,7 @@
     text-align: start;
     visibility: visible;
     position: absolute;
-    top: 0;
+    top: 2vh;
     left: 200px;
     
 }
