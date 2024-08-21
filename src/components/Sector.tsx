@@ -153,8 +153,9 @@ const genPoints = () => {
         let base;
         let step = base = 90 / (pos + 1);
         let points = [];
+        
         for(let i = 0; i < pos; i++){
-            let offset = Math.random() * 60;
+            let offset = Math.random() * 70;
             points.push([offset, base + (i*step)]);
         }
         all.set(Number(k), points);
