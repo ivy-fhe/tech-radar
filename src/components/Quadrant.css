@@ -93,6 +93,12 @@
     width: max-content;
 }
 
+.pointContainer {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
 .screen {
     visibility: collapse;
     background-color: white;
@@ -127,10 +133,13 @@
 }
 
 .expanded .quadrantTitle {
-    top: 10px;
-    left: 20px;
-    bottom: auto;
-    right: auto;
+    top: auto;
+    bottom: 0px;
+    left: 30px;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+    font-size: 3rem;
+    width: fit-content;
 }
 
 .expanded .itemListWrapper {
@@ -141,7 +150,7 @@
     text-align: start;
     visibility: visible;
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 200px;
-    transform: translateY(-50%);
+    
 }

@@ -53,16 +53,15 @@ export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadra
                 <div className='itemListWrapper'>
                     {itemList}
                 </div>
-                <div className='itemList'></div>
                 <p className='quadrantTitle'>{CATEGORY_LOOKUP.get(cat)}</p>
                 <button className='closeBtn' type='submit' onClick={(event) => {
                     event.stopPropagation();
                     setExpStatus(ExpState[ExpState.collapsed]);
                 }}>&#10005;</button>
-                <Sector sectorName={SectorName.Hold} quadrant={cat} items={quadrantItems.hold} styleClass={qClass} callback={callback}/>
-                <Sector sectorName={SectorName.Trial} quadrant={cat} items={quadrantItems.trial} styleClass={qClass} callback={callback}/>
-                <Sector sectorName={SectorName.Specific} quadrant={cat} items={quadrantItems.specific} styleClass={qClass} callback={callback}/>
-                <Sector sectorName={SectorName.Adopt} quadrant={cat} items={quadrantItems.adopt} styleClass={qClass} callback={callback}/>
+                <Sector sectorName={SectorName.Hold} quadrant={cat} items={quadrantItems.hold} styleClass={qClass} callback={callback} expanded={ExpState[ExpState.expanded] === expStatus}/>
+                <Sector sectorName={SectorName.Trial} quadrant={cat} items={quadrantItems.trial} styleClass={qClass} callback={callback} expanded={ExpState[ExpState.expanded] === expStatus}/>
+                <Sector sectorName={SectorName.Specific} quadrant={cat} items={quadrantItems.specific} styleClass={qClass} callback={callback} expanded={ExpState[ExpState.expanded] === expStatus}/>
+                <Sector sectorName={SectorName.Adopt} quadrant={cat} items={quadrantItems.adopt} styleClass={qClass} callback={callback} expanded={ExpState[ExpState.expanded] === expStatus}/>
             </div>
         </>
     )   
@@ -74,28 +73,28 @@ const createList = (quadrantItems: QuadrantItems) => {
     let hold = (
         <div className='listBox'>
             <h1>Hold</h1>
-            <ul>{quadrantItems.hold.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.hold.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
         </div>);
     itemList.push(hold);
 
     let trial = (
         <div className='listBox'>
             <h1>Trial</h1>
-            <ul>{quadrantItems.trial.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.trial.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
         </div>);
     itemList.push(trial);
 
     let specific = (
         <div className='listBox'>
             <h1>Specific</h1>
-            <ul>{quadrantItems.specific.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.specific.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
         </div>);
     itemList.push(specific);
 
     let adopt = (
         <div className='listBox'>
             <h1>Adopt</h1>
-            <ul>{quadrantItems.adopt.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.adopt.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
         </div>);
     itemList.push(adopt);
     return itemList;

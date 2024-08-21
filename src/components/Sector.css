@@ -1,13 +1,15 @@
 :root{
-    --hold-default: calc(1/2*100vh - 10vh);
-    --trial-default: calc(1/2*100vh - 20vh);
-    --specific-default: calc(1/2*100vh - 30vh);
-    --adopt-default: calc(1/2*100vh - 40vh);
+    --radius-diff-default: 10vh;
+    --hold-default: calc(1/2*100vh - 1 * var(--radius-diff-default));
+    --trial-default: calc(1/2*100vh - 2 * var(--radius-diff-default));
+    --specific-default: calc(1/2*100vh - 3 * var(--radius-diff-default));
+    --adopt-default: calc(1/2*100vh - 4 * var(--radius-diff-default));
 
+    --radius-diff-expanded: 25vh;
     --hold-expanded: 95vh;
-    --trial-expanded: 70vh;
-    --specific-expanded: 45vh;
-    --adopt-expanded: 20vh;
+    --trial-expanded: calc(var(--hold-expanded) - var(--radius-diff-expanded));
+    --specific-expanded: calc(var(--trial-expanded) - var(--radius-diff-expanded));
+    --adopt-expanded: calc(var(--specific-expanded) - var(--radius-diff-expanded));
 }
 
 .sector {
