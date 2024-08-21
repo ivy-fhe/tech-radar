@@ -19,7 +19,7 @@ const createItems = (numbers: Array<number>, git?: Array<string>) => {
     const gen = (e: string|number) => {
         count++;
         return {
-            name: count+"",
+            name: git ? e+"" : count+"",
             description: "description of point " + (git ? e : count),
             id: crypto.randomUUID() 
         }
