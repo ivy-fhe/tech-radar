@@ -25,10 +25,23 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     const expPoints: Array<ReactNode> = [];
     let p: number[][] = [];
 
-    if(sectorName === SectorName.Hold) p = HOLD_POSITIONS[quadrant];
-    if(sectorName === SectorName.Trial) p = TRIAL_POSITIONS[quadrant];
-    if(sectorName === SectorName.Specific) p = SPECIFIC_POSITIONS[quadrant]
-    if(sectorName === SectorName.Adopt) p = ADOPT_POSITIONS[quadrant]
+
+
+    const storageKey = "quad"+quadrant;
+    let string = localStorage.getItem(storageKey);
+    let allPos;
+    if(string){
+        allPos = new Map(JSON.parse(string)); 
+    }else{
+        allPos = genPoints();
+        localStorage.setItem(storageKey, JSON.stringify(Array.from(allPos.entries())));
+    }
+    
+
+    if(sectorName === SectorName.Hold) p = allPos.get(3);
+    if(sectorName === SectorName.Trial) p = allPos.get(2);
+    if(sectorName === SectorName.Specific) p = allPos.get(1);
+    if(sectorName === SectorName.Adopt) p = allPos.get(0);
 
     for(let i = 0; i < items.length && i < p.length; i++){
         let height = window.innerHeight / 10;
@@ -53,6 +66,7 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
         );
     }
 
+    genPoints();
     return (
         <div className={"sector " +  SectorName[sectorName].toLocaleLowerCase() + " " + styleClass + "Sector"}>
             <p className={'sectorTitle'}>{SectorName[sectorName]}</p>
@@ -124,17 +138,17 @@ const expLocations = (count: number, min: number) => {
 }
 
 const genPoints = () => {
-    let all = [];
-    let base;
-    let step = base = 90 / 5;
-    for(let j = 0; j < 4; j++) {
+    let all = new Map();
+    positions.forEach((v, k) => {
+        let pos = v;
+        let base;
+        let step = base = 90 / (pos + 1);
         let points = [];
-        for(let i = 0; i < 4; i++){
+        for(let i = 0; i < pos; i++){
             let offset = Math.random() * 80;
             points.push([offset, base + (i*step)]);
         }
-        all.push(points);
-    }
-    
-    console.log(all);
+        all.set(Number(k), points);
+    });
+    return all;
 }

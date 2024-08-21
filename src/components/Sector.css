@@ -76,10 +76,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: all 100ms linear;
+    transition: transform 100ms linear;
 }
 
 .quadrant:has(.point:hover) .point:not(.point:hover) {
+    transition: opacity 100ms linear;
     opacity: 0.2;
 }
 
