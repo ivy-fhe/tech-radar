@@ -3,7 +3,7 @@
     background-color: white;
     height: var(--hold-default);
     width: var(--hold-default);
-    transition: all 100ms linear;
+    transition: transform 100ms linear;
 }
 
 .quadrant:hover:not(.expanded) {
@@ -93,6 +93,13 @@
     width: max-content;
 }
 
+.screen {
+    visibility: collapse;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+
 .expanded .closeBtn{
     visibility: visible;
 }
@@ -116,7 +123,7 @@
 .expanded .sector {
     top: 50%;
     right: 0;
-    transform: translate(50%, -50%);
+    transform: translate(0, -50%);
 }
 
 .expanded .quadrantTitle {

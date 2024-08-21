@@ -31,35 +31,7 @@ enum ExpState {
 export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadrantItems: QuadrantItems, callback: (text: string) => void}) => {
     let qClass;
     const [expStatus, setExpStatus] = useState(ExpState[ExpState.collapsed]);
-    const itemList: Array<ReactNode> = [];
-    
-    let hold = (
-        <div className='listBox'>
-            <h1>Hold</h1>
-            <ul>{quadrantItems.hold.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-        </div>);
-    itemList.push(hold);
-
-    let trial = (
-        <div className='listBox'>
-            <h1>Trial</h1>
-            <ul>{quadrantItems.trial.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-        </div>);
-    itemList.push(trial);
-
-    let specific = (
-        <div className='listBox'>
-            <h1>Specific</h1>
-            <ul>{quadrantItems.specific.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-        </div>);
-    itemList.push(specific);
-
-    let adopt = (
-        <div className='listBox'>
-            <h1>Adopt</h1>
-            <ul>{quadrantItems.adopt.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
-        </div>);
-    itemList.push(adopt);
+    const itemList: Array<ReactNode> = createList(quadrantItems);
 
     switch(cat) {
         case Category.Techniques:
@@ -93,5 +65,38 @@ export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadra
                 <Sector sectorName={SectorName.Adopt} quadrant={cat} items={quadrantItems.adopt} styleClass={qClass} callback={callback}/>
             </div>
         </>
-    )
+    )   
+}
+
+const createList = (quadrantItems: QuadrantItems) => {
+    const itemList: Array<ReactNode> = [];
+
+    let hold = (
+        <div className='listBox'>
+            <h1>Hold</h1>
+            <ul>{quadrantItems.hold.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(hold);
+
+    let trial = (
+        <div className='listBox'>
+            <h1>Trial</h1>
+            <ul>{quadrantItems.trial.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(trial);
+
+    let specific = (
+        <div className='listBox'>
+            <h1>Specific</h1>
+            <ul>{quadrantItems.specific.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(specific);
+
+    let adopt = (
+        <div className='listBox'>
+            <h1>Adopt</h1>
+            <ul>{quadrantItems.adopt.map(e => <li>{e.name + " " + e.description}</li>)}</ul>
+        </div>);
+    itemList.push(adopt);
+    return itemList;
 }
