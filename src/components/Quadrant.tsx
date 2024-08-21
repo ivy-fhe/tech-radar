@@ -71,34 +71,36 @@ export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadra
 const createList = (quadrantItems: QuadrantItems, cat: Category) => {
     const itemList: Array<ReactNode> = [];
 
+    let adopt = (
+        <div className='listBox'>
+            <h1>Adopt</h1>
+            <ul>{quadrantItems.adopt.map(e => listItem(e))}</ul>
+        </div>);
+    
+    let specific = (
+        <div className='listBox'>
+            <h1>Specific</h1>
+            <ul>{quadrantItems.specific.map(e => listItem(e))}</ul>
+        </div>);
+    
+    let trial = (
+        <div className='listBox'>
+            <h1>Trial</h1>
+            <ul>{quadrantItems.trial.map(e => listItem(e))}</ul>
+        </div>);
+    
     let hold = (
         <div className='listBox'>
             <h1>Hold</h1>
             <ul>{quadrantItems.hold.map(e => listItem(e))}</ul>
 
         </div>);
-    itemList.push(hold);
 
-    let trial = (
-        <div className='listBox'>
-            <h1>Trial</h1>
-            <ul>{quadrantItems.trial.map(e => listItem(e))}</ul>
-        </div>);
-    itemList.push(trial);
-
-    let specific = (
-        <div className='listBox'>
-            <h1>Specific</h1>
-            <ul>{quadrantItems.specific.map(e => listItem(e))}</ul>
-        </div>);
-    itemList.push(specific);
-
-    let adopt = (
-        <div className='listBox'>
-            <h1>Adopt</h1>
-            <ul>{quadrantItems.adopt.map(e => listItem(e))}</ul>
-        </div>);
     itemList.push(adopt);
+    itemList.push(specific);
+    itemList.push(trial);
+    itemList.push(hold);
+    
     return itemList;
 }
 

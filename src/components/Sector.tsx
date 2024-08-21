@@ -1,10 +1,12 @@
 import { ReactNode } from 'react';
-import { HOLD_POSITIONS, TRIAL_POSITIONS, SPECIFIC_POSITIONS, ADOPT_POSITIONS } from './Positions';
-import './Sector.css';
 import { Category } from './Quadrant';
 import { Point } from './TechRadar';
 import { getCssVar } from '../util/Size';
 import { handleHighlight } from '../util/Highlight';
+
+
+import './Sector.css';
+
 export enum SectorName {
     Adopt,
     Specific,
@@ -45,11 +47,7 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     for(let i = 0; i < items.length && i < p.length; i++){
         let height = window.innerHeight / 10;
         let location = rotatePoint(height * sectorName, p[i], styleClass);
-        points.push(
-            <div onMouseEnter={() => callback(items[i].description)} onMouseLeave={() => callback('')} className='point' style={location}>
-                <p className='pointLabel'>{items[i].name}</p>
-            </div>
-        );
+        points.push(createPoint(items[i], location, callback));
     }
 
     const storageKeyExp = "quadExp"+quadrant+sectorName;
@@ -63,19 +61,13 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
         expLoc = expLocations(items.length,  min ?? 0);
         localStorage.setItem(storageKeyExp, JSON.stringify(expLoc));
     }
-    
-
 
     for(let i = 0; i < items.length; i++){
         const location = {
             top: expLoc[i][0] + expSizes[sectorName]/2 + "vh",
             right: -expLoc[i][1]+"vh",
         };
-        expPoints.push(
-            <div onMouseEnter={() => handleHighlight(items[i], false, callback)} onMouseLeave={() => handleHighlight(items[i], true, callback)} className={'point '+ items[i].id} style={location}>
-                <p className='pointLabel'>{items[i].name}</p>
-            </div>
-        );
+        expPoints.push(createPoint(items[i], location, callback));
     }
 
     return (
@@ -86,7 +78,13 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     )
 }
 
-
+const createPoint = (e: Point, location: Object, callback: (str: string) => void) => {
+    return(
+        <div onMouseEnter={() => handleHighlight(e, false, callback)} onMouseLeave={() => handleHighlight(e, true, callback)} className={'point '+ e.id} style={location}>
+            {e.icon ? <img src={new URL('../assets/' + e.icon, import.meta.url).href} alt="" /> : <p className='pointLabel'>{e.name}</p>}
+        </div>
+    );
+}
 
 const rotatePoint = (min: number, vec: number[], styleClass: string ) => {
     const height = window.innerHeight;
@@ -138,7 +136,7 @@ const expLocations = (count: number, min: number) => {
     let degStep = 180/(count+1);
     for(let i = 1; i <= count; i++){
         let o = Math.random()*(25/2-4);
-        let angle = (degStep*i) * (Math.PI/180);
+        let angle = (180 - degStep*i) * (Math.PI/180);
         let y = start[0]+o;
         let x = start[1];
         let x1 = Math.cos(angle) * x - Math.sin(angle) * y;

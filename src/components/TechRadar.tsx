@@ -5,7 +5,8 @@ import './TechRadar.css'
 export type Point = {
     name: string,
     description: string,
-    id: string
+    id: string, 
+    icon?: string
 }
 const numbers = [];
 for(let i = 0; i < 20; i++){
@@ -17,7 +18,8 @@ const items: QuadrantItems = {
         return {
             name: e+"",
             description: "description of point " + e,
-            id: crypto.randomUUID() 
+            id: crypto.randomUUID(),
+            icon: 'docker.svg' 
         }
     }),
     trial: numbers.map(e =>  {
