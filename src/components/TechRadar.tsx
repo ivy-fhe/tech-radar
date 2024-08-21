@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
-import { Category, Quadrant, type QuadrantItems } from "./Quadrant"
 import './TechRadar.css'
 import { getLang } from "../util/GithubLanguages";
+import { QuadrantItems, Category } from "../util/enum-types";
+import { Quadrant } from "./Quadrant";
 
-export type Point = {
-    name: string,
-    description: string,
-    id: string, 
-    icon?: string
-}
 const numbers: Array<number> = [];
 for(let i = 0; i < 20; i++){
     numbers.push(i);

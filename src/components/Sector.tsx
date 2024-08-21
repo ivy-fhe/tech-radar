@@ -1,18 +1,10 @@
-import { ReactNode, useEffect } from 'react';
-import { Category } from './Quadrant';
-import { Point } from './TechRadar';
+import { ReactNode } from 'react';
 import { getCssVar } from '../util/Size';
-import { handleHighlight } from '../util/Highlight';
-
+import { SectorName } from '../util/enum-types';
+import { Category, Point } from '../util/enum-types';
 
 import './Sector.css';
-
-export enum SectorName {
-    Adopt,
-    Specific,
-    Trial,
-    Hold,
-}
+import { genPoints, rotatePoint, createPoint, expLocations } from '../util/SectorHelper';
 
 const positions = new Map<SectorName, number>();
 positions.set(SectorName.Hold, 10);
@@ -35,7 +27,7 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     if(string){
         allPos = new Map(JSON.parse(string)); 
     }else{
-        allPos = genPoints();
+        allPos = genPoints(positions);
         localStorage.setItem(storageKey, JSON.stringify(Array.from(allPos.entries())));
     }
     
@@ -78,86 +70,3 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     )
 }
 
-const createPoint = (e: Point, location: Object, callback: (str: string) => void) => {
-    return(
-        <div onMouseEnter={() => handleHighlight(e, false, callback)} onMouseLeave={() => handleHighlight(e, true, callback)} className={'point '+ e.id} style={location}>
-            {e.icon ? <img src={new URL('../assets/' + e.icon, import.meta.url).href} alt="" /> : <p className='pointLabel'>{e.name}</p>}
-        </div>
-    );
-}
-
-const rotatePoint = (min: number, vec: number[], styleClass: string ) => {
-    const height = window.innerHeight;
-    const vh = height / 100;
-    min+=10;
-    const point = min + vec[0];
-    const angle = vec[1] * (Math.PI/180);
-    let vector = [Math.abs(Math.cos(-angle) * 0 - Math.sin(-angle) * point), Math.abs(Math.sin(-angle) * 0 + Math.cos(-angle)*point)];
-    vector = [vector[0] / vh, vector[1] / vh];
-    let location;
-    switch(styleClass.trim()){
-        case 'topLeft':
-            location = {
-                bottom: vector[0] + "vh",
-                right: vector[1]+ "vh"
-            }
-            break;
-        case 'topRight':
-            location = {
-                bottom: vector[0]+ "vh",
-                left: vector[1]+ "vh"
-            }
-            break;
-        case 'bottomRight':
-            location = {
-                top: vector[0]+ "vh",
-                left: vector[1]+ "vh"
-            }
-            break;
-        case 'bottomLeft':
-            location = {
-                top: vector[0]+ "vh",
-                right: vector[1]+ "vh"
-            }
-            break;
-        default:
-            location = {
-                top: "100px",
-                left: "100px"
-            }
-    }
-    return location;
-}
-
-const expLocations = (count: number, min: number) => {
-    let p = [];
-    let start = [min, 0];
-    let degStep = 180/(count+1);
-    for(let i = 1; i <= count; i++){
-        let o = Math.random()*(25/2-4);
-        let angle = (180 - degStep*i) * (Math.PI/180);
-        let y = start[0]+o;
-        let x = start[1];
-        let x1 = Math.cos(angle) * x - Math.sin(angle) * y;
-        let y1 = Math.sin(angle) * x + Math.cos(angle) * y;
-        p.push([y1, x1]);
-    }
-    return p;
-}
-
-const genPoints = () => {
-    let all = new Map();
-    positions.forEach((v, k) => {
-        let pos = v;
-        let base;
-        let step = base = 90 / (pos + 1);
-        let points = [];
-        
-        for(let i = 0; i < pos; i++){
-            let offset = Math.random() * 70;
-            points.push([offset, base + (i*step)]);
-        }
-        all.set(Number(k), points);
-    });
-    return all;
-}
