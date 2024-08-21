@@ -93,11 +93,8 @@
     width: 30vw;
 }
 
-.expanded .point.highlight ~ .point {
-    opacity: 0.2;
-}
-
-.expanded .point:has(~ .point.highlight) {
+.quadrant:has(.point.highlight) .point:not(.point.highlight) {
+    transition: opacity 100ms linear;
     opacity: 0.2;
 }
 
