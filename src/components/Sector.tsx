@@ -52,7 +52,19 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
             </div>
         );
     }
-    let expLoc = expLocations(items.length, expSizes[sectorName-1]/2+2 ?? 0);
+
+    const storageKeyExp = "quadExp"+quadrant+sectorName;
+    let expString = localStorage.getItem(storageKeyExp);
+    let expLoc;
+    if(expString){
+        expLoc = JSON.parse(expString);
+    }else {
+        expLoc = expLocations(items.length, expSizes[sectorName-1]/2+2 ?? 0);
+        localStorage.setItem(storageKeyExp, JSON.stringify(expLoc));
+    }
+    
+
+
     for(let i = 0; i < items.length; i++){
         const location = {
             top: expLoc[i][0] + expSizes[sectorName]/2 + "vh",
@@ -66,7 +78,6 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
         );
     }
 
-    genPoints();
     return (
         <div className={"sector " +  SectorName[sectorName].toLocaleLowerCase() + " " + styleClass + "Sector"}>
             <p className={'sectorTitle'}>{SectorName[sectorName]}</p>
