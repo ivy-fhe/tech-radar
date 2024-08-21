@@ -5,20 +5,42 @@ import './TechRadar.css'
 export type Point = {
     name: string,
     description: string,
+    id: string
+}
+const numbers = [];
+for(let i = 0; i < 20; i++){
+    numbers.push(i);
 }
 
-const dummyItems: Array<Point> = ['a', 'b', 'c', 'd', 'e', 'f', 'h', 'i', 'j', 'k'].map(e =>  {
-    return {
-        name: e,
-        description: "description of point " + e
-    }
-});;
-
 const items: QuadrantItems = {
-    hold: dummyItems,
-    trial: dummyItems,
-    specific: dummyItems,
-    adopt: dummyItems,
+    hold: numbers.map(e =>  {
+        return {
+            name: e+"",
+            description: "description of point " + e,
+            id: crypto.randomUUID() 
+        }
+    }),
+    trial: numbers.map(e =>  {
+        return {
+            name: e+"",
+            description: "description of point " + e,
+            id: crypto.randomUUID() 
+        }
+    }),
+    specific: numbers.map(e =>  {
+        return {
+            name: e+"",
+            description: "description of point " + e,
+            id: crypto.randomUUID() 
+        }
+    }),
+    adopt: numbers.map(e =>  {
+        return {
+            name: e+"",
+            description: "description of point " + e,
+            id: crypto.randomUUID() 
+        }
+    }),
 }
 
 export const TechRadar = () => {
@@ -26,6 +48,7 @@ export const TechRadar = () => {
     const callback : (text: string) => void = (text) => {
         setInfoText(text);
     }
+
     return (
         <>
         <p className="pointInfo">{infoText}</p>

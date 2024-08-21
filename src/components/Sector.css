@@ -16,6 +16,10 @@
     position: absolute;
 }
 
+.sectorTitle {
+    pointer-events: none;
+}
+
 .topLeftSector {
     right: 0;
     bottom: 0;

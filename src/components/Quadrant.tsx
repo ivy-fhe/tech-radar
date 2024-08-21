@@ -2,6 +2,7 @@ import { SectorName, Sector} from './Sector';
 import './Quadrant.css';
 import { Point } from './TechRadar';
 import { ReactNode, useState } from 'react';
+import { handleHighlight } from '../util/Highlight';
 
 export enum Category {
     Techniques,
@@ -31,7 +32,7 @@ enum ExpState {
 export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadrantItems: QuadrantItems, callback: (text: string) => void}) => {
     let qClass;
     const [expStatus, setExpStatus] = useState(ExpState[ExpState.collapsed]);
-    const itemList: Array<ReactNode> = createList(quadrantItems);
+    const itemList: Array<ReactNode> = createList(quadrantItems, cat);
 
     switch(cat) {
         case Category.Techniques:
@@ -67,35 +68,49 @@ export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadra
     )   
 }
 
-const createList = (quadrantItems: QuadrantItems) => {
+const createList = (quadrantItems: QuadrantItems, cat: Category) => {
     const itemList: Array<ReactNode> = [];
 
     let hold = (
         <div className='listBox'>
             <h1>Hold</h1>
-            <ul>{quadrantItems.hold.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.hold.map(e => listItem(e))}</ul>
+
         </div>);
     itemList.push(hold);
 
     let trial = (
         <div className='listBox'>
             <h1>Trial</h1>
-            <ul>{quadrantItems.trial.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.trial.map(e => listItem(e))}</ul>
         </div>);
     itemList.push(trial);
 
     let specific = (
         <div className='listBox'>
             <h1>Specific</h1>
-            <ul>{quadrantItems.specific.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.specific.map(e => listItem(e))}</ul>
         </div>);
     itemList.push(specific);
 
     let adopt = (
         <div className='listBox'>
             <h1>Adopt</h1>
-            <ul>{quadrantItems.adopt.map(e => <li>{e.name + " - " + e.description}</li>)}</ul>
+            <ul>{quadrantItems.adopt.map(e => listItem(e))}</ul>
         </div>);
     itemList.push(adopt);
     return itemList;
+}
+
+const listItem = (e : Point) => {
+    return(
+        <li 
+            className={e.id} 
+            onMouseEnter={() => 
+            handleHighlight(e, false, (_) => {})}
+            onMouseLeave={() => 
+                handleHighlight(e, true, (_) => {})}>
+                <p>{e.name + " - " + e.description}</p>
+        </li>
+    )
 }

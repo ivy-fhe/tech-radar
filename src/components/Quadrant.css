@@ -90,13 +90,12 @@
 .itemListWrapper {
     visibility: collapse;
     overflow: scroll;
-    width: max-content;
+    width: 30vw;
 }
 
-.pointContainer {
-    height: 100%;
-    width: 100%;
-    position: relative;
+.highlight {
+    background-color: green;
+    transform: scale(1.2);
 }
 
 .screen {
@@ -147,6 +146,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+    gap: 20px;
     text-align: start;
     visibility: visible;
     position: absolute;

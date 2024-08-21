@@ -4,6 +4,7 @@ import './Sector.css';
 import { Category } from './Quadrant';
 import { Point } from './TechRadar';
 import { getCssVar } from '../util/Size';
+import { handleHighlight } from '../util/Highlight';
 export enum SectorName {
     Adopt,
     Specific,
@@ -24,8 +25,6 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     let points: Array<ReactNode> = [];
     const expPoints: Array<ReactNode> = [];
     let p: number[][] = [];
-
-
 
     const storageKey = "quad"+quadrant;
     let string = localStorage.getItem(storageKey);
@@ -59,7 +58,9 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     if(expString){
         expLoc = JSON.parse(expString);
     }else {
-        expLoc = expLocations(items.length, expSizes[sectorName-1]/2+2 ?? 0);
+        let min = expSizes[sectorName-1]/2+2;
+        min = isNaN(min) ? 0 : min;
+        expLoc = expLocations(items.length,  min ?? 0);
         localStorage.setItem(storageKeyExp, JSON.stringify(expLoc));
     }
     
@@ -69,10 +70,9 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
         const location = {
             top: expLoc[i][0] + expSizes[sectorName]/2 + "vh",
             right: -expLoc[i][1]+"vh",
-            translate: "transformY(-200%)"
         };
         expPoints.push(
-            <div onMouseEnter={() => callback(items[i].description)} onMouseLeave={() => callback('')} className='point' style={location}>
+            <div onMouseEnter={() => handleHighlight(items[i], false, callback)} onMouseLeave={() => handleHighlight(items[i], true, callback)} className={'point '+ items[i].id} style={location}>
                 <p className='pointLabel'>{items[i].name}</p>
             </div>
         );
@@ -81,17 +81,17 @@ export const Sector = ({sectorName, quadrant, items, styleClass, callback, expan
     return (
         <div className={"sector " +  SectorName[sectorName].toLocaleLowerCase() + " " + styleClass + "Sector"}>
             <p className={'sectorTitle'}>{SectorName[sectorName]}</p>
-            <div className='pointContainer'>
-                {expanded ? expPoints : points}
-            </div>
+            {expanded ? expPoints : points}
         </div>
     )
 }
 
+
+
 const rotatePoint = (min: number, vec: number[], styleClass: string ) => {
     const height = window.innerHeight;
     const vh = height / 100;
-    min -= vh;
+    min+=10;
     const point = min + vec[0];
     const angle = vec[1] * (Math.PI/180);
     let vector = [Math.abs(Math.cos(-angle) * 0 - Math.sin(-angle) * point), Math.abs(Math.sin(-angle) * 0 + Math.cos(-angle)*point)];
@@ -133,7 +133,7 @@ const rotatePoint = (min: number, vec: number[], styleClass: string ) => {
 
 const expLocations = (count: number, min: number) => {
     let p = [];
-    
+    console.log(min);
     let start = [min, 0];
     let degStep = 180/(count+1);
     for(let i = 1; i <= count; i++){
@@ -156,7 +156,7 @@ const genPoints = () => {
         let step = base = 90 / (pos + 1);
         let points = [];
         for(let i = 0; i < pos; i++){
-            let offset = Math.random() * 80;
+            let offset = Math.random() * 60;
             points.push([offset, base + (i*step)]);
         }
         all.set(Number(k), points);
