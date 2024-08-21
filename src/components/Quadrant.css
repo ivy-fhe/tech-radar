@@ -93,8 +93,16 @@
     width: 30vw;
 }
 
+.point.highlight ~ .point {
+    opacity: 0.2;
+}
+
+.point:has(~ .point.highlight) {
+    opacity: 0.2;
+}
+
 .highlight {
-    background-color: green;
+    background-color: #007095;
     transform: scale(1.2);
 }
 
@@ -145,7 +153,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     gap: 20px;
     text-align: start;
