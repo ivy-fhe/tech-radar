@@ -1,3 +1,17 @@
+:root{
+    --radius-diff-default: 10vh;
+    --hold-default: calc(1/2*100vh - 1 * var(--radius-diff-default));
+    --trial-default: calc(1/2*100vh - 2 * var(--radius-diff-default));
+    --specific-default: calc(1/2*100vh - 3 * var(--radius-diff-default));
+    --adopt-default: calc(1/2*100vh - 4 * var(--radius-diff-default));
+
+    --radius-diff-expanded: 25vh;
+    --hold-expanded: 95vh;
+    --trial-expanded: calc(var(--hold-expanded) - var(--radius-diff-expanded));
+    --specific-expanded: calc(var(--trial-expanded) - var(--radius-diff-expanded));
+    --adopt-expanded: calc(var(--specific-expanded) - var(--radius-diff-expanded));
+}
+
 *{
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
@@ -25,4 +39,5 @@ li {
     align-items: center;
     height: 100vh;
     width: 100vw;
+    min-width: calc(100vh/2);
 }
