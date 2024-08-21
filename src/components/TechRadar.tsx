@@ -42,17 +42,21 @@ export const TechRadar = () => {
         setInfoText(text);
     }
     const [adopt, setAdopt] = useState(items);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const setData = async () => {
             let data = await getLang();
             setAdopt(createItems(numbers, Object.keys(data)));
+            setLoading(false);
         }
         setData();
       }, []);
-      
-        return (
-            <>
+
+    return (
+        <>
+            {loading && <p>Loading...</p>}
+            {!loading && <>
             <p className="pointInfo">{infoText}</p>
             <div className="techRadar">
                 <Quadrant cat={Category.Techniques} quadrantItems={items} callback={callback}/>
@@ -60,8 +64,7 @@ export const TechRadar = () => {
                 <Quadrant cat={Category.LanguagesFrameworks} quadrantItems={items} callback={callback}/>
                 <Quadrant cat={Category.Tools} quadrantItems={adopt} callback={callback}/>
             </div>
-            </>
-            
-        )
-    //});
+            </>}    
+        </>
+    )
 }
