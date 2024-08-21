@@ -61,8 +61,8 @@ export const TechRadar = () => {
             <div className="techRadar">
                 <Quadrant cat={Category.Techniques} quadrantItems={items} callback={callback}/>
                 <Quadrant cat={Category.Platforms} quadrantItems={items} callback={callback}/>
-                <Quadrant cat={Category.LanguagesFrameworks} quadrantItems={items} callback={callback}/>
-                <Quadrant cat={Category.Tools} quadrantItems={adopt} callback={callback}/>
+                <Quadrant cat={Category.LanguagesFrameworks} quadrantItems={adopt} callback={callback}/>
+                <Quadrant cat={Category.Tools} quadrantItems={items} callback={callback}/>
             </div>
             </>}    
         </>
