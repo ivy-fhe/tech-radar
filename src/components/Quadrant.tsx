@@ -32,7 +32,7 @@ enum ExpState {
 export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadrantItems: QuadrantItems, callback: (text: string) => void}) => {
     let qClass;
     const [expStatus, setExpStatus] = useState(ExpState[ExpState.collapsed]);
-    const itemList: Array<ReactNode> = createList(quadrantItems, cat);
+    const itemList: Array<ReactNode> = createList(quadrantItems);
 
     switch(cat) {
         case Category.Techniques:
@@ -68,7 +68,7 @@ export const Quadrant = ({cat, quadrantItems, callback} : {cat: Category, quadra
     )   
 }
 
-const createList = (quadrantItems: QuadrantItems, cat: Category) => {
+const createList = (quadrantItems: QuadrantItems) => {
     const itemList: Array<ReactNode> = [];
 
     let adopt = (
