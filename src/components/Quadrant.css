@@ -98,12 +98,18 @@
     opacity: 0.2;
 }
 
+.expanded li.highlight {
+    transform: translateX(1em);
+}
+
 .expanded .highlight {
     background-color: var(--accent-green);
     transform: scale(1.2);
     opacity: 1;
     z-index: 25;
 }
+
+
 
 .screen {
     visibility: collapse;
@@ -153,7 +159,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     gap: 20px;
     text-align: start;
     visibility: visible;

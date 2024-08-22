@@ -5,8 +5,9 @@ import { Quadrant } from "./Quadrant";
 import { createAdoptItems, createDummyitems } from "../util/DummyData";
 import { Category } from "../util/enum-types";
 
+const items = createDummyitems();
+
 export const TechRadar = () => {
-    const items = createDummyitems();
     const [infoText, setInfoText] = useState('');
     const callback : (text: string) => void = (text) => {
         setInfoText(text);
