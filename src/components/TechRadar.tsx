@@ -28,6 +28,7 @@ export const TechRadar = () => {
         <>
             {loading && <p>Loading...</p>}
             {!loading && <>
+            <h1 className="siteTitle">Tech Radar - Axon Ivy</h1>
             <p className="pointInfo">{infoText}</p>
             <div className="techRadar">
                 <Quadrant cat={Category.Techniques} quadrantItems={items} callback={callback}/>

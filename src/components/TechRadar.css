@@ -10,6 +10,15 @@
     gap: 10px;
 }
 
+.siteTitle{
+    position: absolute;
+    left: 30px;
+    bottom: 10px;
+    transform-origin: top left;
+    transform: rotate(-90deg);
+    font-size: 3em;
+}
+
 .pointInfo {
     position: absolute;
     top: 10px;
