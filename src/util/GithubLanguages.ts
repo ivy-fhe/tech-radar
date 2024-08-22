@@ -1,4 +1,4 @@
-import { GITHUB_TOKEN } from "../secrets/github";
+import { GITHUB_TOKEN } from "../secrets/secrents";
 
 export const getLang = async () => {
     let owner = 'ivy-fhe';

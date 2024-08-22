@@ -5,6 +5,7 @@
 .sectorTitle {
     pointer-events: none;
     visibility: collapse;
+    color: #323232;
 }
 
 .topLeftSector {
@@ -66,7 +67,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: #007095;
+    background-color: var(--accent-blue);
     border-radius: 100%;
     margin: 0;
     padding: 0;
@@ -84,7 +85,7 @@
 
 .point:hover {
     transform: scale(1.1);
-    background-color: #d7e52c;
+    background-color: var(--accent-green);
     opacity: 1;
     z-index: 25;
 }

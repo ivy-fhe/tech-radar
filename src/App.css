@@ -10,6 +10,9 @@
     --trial-expanded: calc(var(--hold-expanded) - var(--radius-diff-expanded));
     --specific-expanded: calc(var(--trial-expanded) - var(--radius-diff-expanded));
     --adopt-expanded: calc(var(--specific-expanded) - var(--radius-diff-expanded));
+
+    --accent-green: #d7e52c;
+    --accent-blue: #007095;
 }
 
 *{

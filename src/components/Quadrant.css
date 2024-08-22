@@ -99,7 +99,7 @@
 }
 
 .expanded .highlight {
-    background-color: #d7e52c;
+    background-color: var(--accent-green);
     transform: scale(1.2);
     opacity: 1;
     z-index: 25;
