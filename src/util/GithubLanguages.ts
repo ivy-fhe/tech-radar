@@ -3,8 +3,11 @@ import { GITHUB_TOKEN } from "../secrets/secrents";
 export const getLang = async () => {
     let owner = 'ivy-fhe';
     let repo = 'tech-radar';
+
+    let ivy = 'axonivy';
+    let core = 'core';
     
-    return await fetchLanguages(owner, repo, GITHUB_TOKEN);
+    return await fetchLanguages(ivy, core, GITHUB_TOKEN);
 }
 
 const fetchLanguages = async (owner: string, repo: string, token: string) => {
@@ -17,6 +20,5 @@ const fetchLanguages = async (owner: string, repo: string, token: string) => {
       }
     });
     let resp = await response.json();
-    console.log(resp);
     return resp;
   }
