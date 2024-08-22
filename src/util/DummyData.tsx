@@ -16,17 +16,18 @@ export const createAdoptItems = (adoptItems: Array<string>) => {
 
 const createItems = (numbers: Array<number>, git?: Array<string>) => {
     let count = 0;
-    const gen = (e: string|number) => {
+    const gen = (e: string|number, gSwitch : boolean = false) => {
         count++;
         return {
-            name: git ? e+"" : count+"",
-            description: "description of point " + (git ? e : count),
-            id: crypto.randomUUID() 
+            name: "0".repeat(2-(count+"").length) + count,
+            description: gSwitch ? e+"" : "description of point " + count,
+            id: crypto.randomUUID(),
+            icon: e == 5 ? 'docker.svg' : undefined
         }
     };
 
     const items: QuadrantItems = {
-        adopt: git? git.map(e => gen(e)) : numbers.map(e => gen(e)),
+        adopt: git? git.map(e => gen(e, true)) : numbers.map(e => gen(e)),
         specific: numbers.map(e => gen(e)),
         trial: numbers.map(e => gen(e)),
         hold: numbers.map(e => gen(e)),
